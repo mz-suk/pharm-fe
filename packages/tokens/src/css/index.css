@@ -1,0 +1,37 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --pharm-primitive-color-gray-0: #ffffff;
+  --pharm-primitive-color-gray-50: #f8fafc;
+  --pharm-primitive-color-gray-300: #d1d5db;
+  --pharm-primitive-color-gray-600: #4b5563;
+  --pharm-primitive-color-gray-900: #111827;
+  --pharm-primitive-color-green-600: #16a34a;
+  --pharm-primitive-color-red-600: #dc2626;
+  --pharm-primitive-dimension-0: 0px;
+  --pharm-primitive-dimension-4: 16px;
+  --pharm-primitive-dimension-8: 32px;
+  --pharm-primitive-dimension-radius-lg: 16px;
+  --pharm-primitive-typography-font-family-sans: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --pharm-breakpoint-mobile: 0px;
+  --pharm-breakpoint-tablet: 768px;
+  --pharm-breakpoint-desktop: 1024px;
+  --pharm-breakpoint-wide: 1440px;
+  --pharm-color-text-primary: #111827;
+  --pharm-color-text-secondary: #4b5563;
+  --pharm-color-bg-canvas: #ffffff;
+  --pharm-color-bg-surface: #f8fafc;
+  --pharm-color-border-default: #d1d5db;
+  --pharm-color-feedback-success: #16a34a;
+  --pharm-color-feedback-error: #dc2626;
+  --pharm-elevation-none: none;
+  --pharm-radius-lg: 16px;
+  --pharm-spacing-0: 0px;
+  --pharm-spacing-4: 16px;
+  --pharm-spacing-8: 32px;
+  --pharm-typography-font-family-base: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --pharm-z-index-base: 0;
+  --pharm-z-index-overlay: 1000;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@pharm/fo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -p tsconfig.json --noEmit && vite build",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@pharm/api-client": "workspace:*",
+    "@pharm/app-bridge": "workspace:*",
+    "@pharm/tokens": "workspace:*",
+    "@pharm/utils": "workspace:*",
+    "@tanstack/vue-query": "catalog:",
+    "pinia": "catalog:",
+    "reka-ui": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@pharm/config": "workspace:*"
+  }
+}

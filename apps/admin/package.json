@@ -1,0 +1,25 @@
+{
+  "name": "@pharm/admin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -p tsconfig.json --noEmit && vite build",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@pharm/api-client": "workspace:*",
+    "@pharm/tokens": "workspace:*",
+    "@pharm/utils": "workspace:*",
+    "@tanstack/vue-query": "catalog:",
+    "element-plus": "catalog:",
+    "pinia": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@pharm/config": "workspace:*"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "spacing": {
+    "0": {
+      "value": "{primitive.dimension.0}",
+      "type": "dimension"
+    },
+    "4": {
+      "value": "{primitive.dimension.4}",
+      "type": "dimension"
+    },
+    "8": {
+      "value": "{primitive.dimension.8}",
+      "type": "dimension"
+    }
+  }
+}

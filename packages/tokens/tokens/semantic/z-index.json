@@ -1,0 +1,12 @@
+{
+  "zIndex": {
+    "base": {
+      "value": 0,
+      "type": "number"
+    },
+    "overlay": {
+      "value": 1000,
+      "type": "number"
+    }
+  }
+}

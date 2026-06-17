@@ -1,0 +1,51 @@
+{
+  "name": "pharm-fe",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22.18.0",
+    "pnpm": ">=11.7.0"
+  },
+  "scripts": {
+    "dev:fo": "pnpm --filter @pharm/tokens build && turbo run dev --filter=@pharm/fo",
+    "dev:admin": "pnpm --filter @pharm/tokens build && turbo run dev --filter=@pharm/admin",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue,json,md,scss,css,yaml,yml}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx,vue}": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@eslint/js": "catalog:",
+    "@pharm/config": "workspace:*",
+    "@vitejs/plugin-vue": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-plugin-vue": "catalog:",
+    "globals": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "orval": "catalog:",
+    "prettier": "catalog:",
+    "sass": "catalog:",
+    "style-dictionary": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vite": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

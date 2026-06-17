@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  min-width: 768px;
+  color: var(--pharm-color-text-primary);
+  background: var(--pharm-color-bg-canvas);
+  font-family: var(--pharm-typography-font-family-base);
+}
+
+.admin-dashboard {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: var(--pharm-spacing-8);
+}
+
+.admin-dashboard__panel {
+  width: min(100%, 720px);
+  padding: var(--pharm-spacing-8);
+  border: 1px solid var(--pharm-color-border-default);
+  border-radius: var(--pharm-radius-lg);
+  background: var(--pharm-color-bg-surface);
+}
+
+.admin-dashboard__eyebrow {
+  margin: 0;
+  color: var(--pharm-color-text-secondary);
+}

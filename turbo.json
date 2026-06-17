@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "@pharm/config#build": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "@pharm/tokens#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["src/css/**", "src/scss/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": []
+    },
+    "typecheck": {
+      "outputs": []
+    }
+  }
+}

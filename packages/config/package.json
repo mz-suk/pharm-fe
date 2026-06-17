@@ -1,0 +1,22 @@
+{
+  "name": "@pharm/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint/index.js",
+    "./prettier": "./prettier.config.js",
+    "./typescript/base": "./typescript/tsconfig.base.json",
+    "./typescript/vue-app": "./typescript/tsconfig.vue-app.json",
+    "./typescript/package": "./typescript/tsconfig.package.json",
+    "./vite/vue-app": {
+      "types": "./vite/vue-app.ts",
+      "import": "./vite/vue-app.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint ."
+  }
+}

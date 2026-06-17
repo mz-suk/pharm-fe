@@ -1,0 +1,10 @@
+{
+  "typography": {
+    "fontFamily": {
+      "base": {
+        "value": "{primitive.typography.fontFamily.sans}",
+        "type": "fontFamily"
+      }
+    }
+  }
+}

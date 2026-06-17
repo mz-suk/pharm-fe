@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--pharm-color-text-primary);
+  background: var(--pharm-color-bg-canvas);
+  font-family: var(--pharm-typography-font-family-base);
+}
+
+.fo-home {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  gap: var(--pharm-spacing-4);
+  padding: var(--pharm-spacing-8);
+}
+
+.fo-home__eyebrow {
+  margin: 0;
+  color: var(--pharm-color-text-secondary);
+}

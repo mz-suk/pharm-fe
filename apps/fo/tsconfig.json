@@ -1,0 +1,9 @@
+{
+  "extends": "../../packages/config/typescript/tsconfig.vue-app.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "vite.config.ts"]
+}

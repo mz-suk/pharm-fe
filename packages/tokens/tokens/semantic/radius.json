@@ -1,0 +1,8 @@
+{
+  "radius": {
+    "lg": {
+      "value": "{primitive.dimension.radiusLg}",
+      "type": "dimension"
+    }
+  }
+}

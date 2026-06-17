@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+.pnpm-store/
+
+packages/api-client/src/generated/
+packages/tokens/src/css/index.css
+packages/tokens/src/scss/_variables.scss

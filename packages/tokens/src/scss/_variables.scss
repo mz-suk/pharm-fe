@@ -1,0 +1,110 @@
+
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+$pharm-primitive-color-gray-0: #ffffff !default;
+$pharm-primitive-color-gray-50: #f8fafc !default;
+$pharm-primitive-color-gray-300: #d1d5db !default;
+$pharm-primitive-color-gray-600: #4b5563 !default;
+$pharm-primitive-color-gray-900: #111827 !default;
+$pharm-primitive-color-green-600: #16a34a !default;
+$pharm-primitive-color-red-600: #dc2626 !default;
+$pharm-primitive-dimension-0: 0px !default;
+$pharm-primitive-dimension-4: 16px !default;
+$pharm-primitive-dimension-8: 32px !default;
+$pharm-primitive-dimension-radius-lg: 16px !default;
+$pharm-primitive-typography-font-family-sans: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif !default;
+$pharm-breakpoint-mobile: 0px !default;
+$pharm-breakpoint-tablet: 768px !default;
+$pharm-breakpoint-desktop: 1024px !default;
+$pharm-breakpoint-wide: 1440px !default;
+$pharm-color-text-primary: #111827 !default;
+$pharm-color-text-secondary: #4b5563 !default;
+$pharm-color-bg-canvas: #ffffff !default;
+$pharm-color-bg-surface: #f8fafc !default;
+$pharm-color-border-default: #d1d5db !default;
+$pharm-color-feedback-success: #16a34a !default;
+$pharm-color-feedback-error: #dc2626 !default;
+$pharm-elevation-none: none !default;
+$pharm-radius-lg: 16px !default;
+$pharm-spacing-0: 0px !default;
+$pharm-spacing-4: 16px !default;
+$pharm-spacing-8: 32px !default;
+$pharm-typography-font-family-base: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif !default;
+$pharm-z-index-base: 0 !default;
+$pharm-z-index-overlay: 1000 !default;
+
+$pharm-tokens: (
+  'primitive': (
+    'color': (
+      'gray': (
+        '0': $pharm-primitive-color-gray-0,
+        '50': $pharm-primitive-color-gray-50,
+        '300': $pharm-primitive-color-gray-300,
+        '600': $pharm-primitive-color-gray-600,
+        '900': $pharm-primitive-color-gray-900
+      ),
+      'green': (
+        '600': $pharm-primitive-color-green-600
+      ),
+      'red': (
+        '600': $pharm-primitive-color-red-600
+      )
+    ),
+    'dimension': (
+      '0': $pharm-primitive-dimension-0,
+      '4': $pharm-primitive-dimension-4,
+      '8': $pharm-primitive-dimension-8,
+      'radiusLg': $pharm-primitive-dimension-radius-lg
+    ),
+    'typography': (
+      'fontFamily': (
+        'sans': $pharm-primitive-typography-font-family-sans
+      )
+    )
+  ),
+  'breakpoint': (
+    'mobile': $pharm-breakpoint-mobile,
+    'tablet': $pharm-breakpoint-tablet,
+    'desktop': $pharm-breakpoint-desktop,
+    'wide': $pharm-breakpoint-wide
+  ),
+  'color': (
+    'text': (
+      'primary': $pharm-color-text-primary,
+      'secondary': $pharm-color-text-secondary
+    ),
+    'bg': (
+      'canvas': $pharm-color-bg-canvas,
+      'surface': $pharm-color-bg-surface
+    ),
+    'border': (
+      'default': $pharm-color-border-default
+    ),
+    'feedback': (
+      'success': $pharm-color-feedback-success,
+      'error': $pharm-color-feedback-error
+    )
+  ),
+  'elevation': (
+    'none': $pharm-elevation-none
+  ),
+  'radius': (
+    'lg': $pharm-radius-lg
+  ),
+  'spacing': (
+    '0': $pharm-spacing-0,
+    '4': $pharm-spacing-4,
+    '8': $pharm-spacing-8
+  ),
+  'typography': (
+    'fontFamily': (
+      'base': $pharm-typography-font-family-base
+    )
+  ),
+  'zIndex': (
+    'base': $pharm-z-index-base,
+    'overlay': $pharm-z-index-overlay
+  )
+);

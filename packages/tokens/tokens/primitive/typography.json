@@ -1,0 +1,12 @@
+{
+  "primitive": {
+    "typography": {
+      "fontFamily": {
+        "sans": {
+          "value": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+          "type": "fontFamily"
+        }
+      }
+    }
+  }
+}
