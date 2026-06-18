@@ -143,6 +143,7 @@ pnpm format:check
 ```sh
 pnpm dev:fo
 pnpm dev:admin
+pnpm storybook:fo
 ```
 
 workspace 단위 실행:
@@ -170,6 +171,13 @@ FO 개발:
 pnpm dev:fo
 ```
 
+FO Storybook:
+
+```sh
+pnpm storybook:fo
+pnpm build-storybook:fo
+```
+
 Admin 개발:
 
 ```sh
@@ -178,7 +186,7 @@ pnpm dev:admin
 
 두 root dev script는 Vite 실행 전에 `@pharm/tokens`를 먼저 빌드합니다. 앱은 `@pharm/tokens/css`를 import하므로 토큰 산출물이 필요합니다.
 
-기본 포트는 FO `5173`, Admin `5174`입니다. dev server는 기본적으로 localhost로 실행합니다.
+기본 포트는 FO `5173`, Admin `5174`, FO Storybook `6006`입니다. dev server는 기본적으로 localhost로 실행합니다.
 
 LAN 또는 WebView 기기에서 확인해야 하면 workspace dev script에 host 옵션을 넘깁니다.
 

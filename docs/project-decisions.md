@@ -44,6 +44,7 @@ Pharm은 로그인 기반의 폐쇄형 의약품 이커머스 서비스입니다
 - FO/Admin Vite 설정을 `packages/config`의 공용 helper로 단일화.
 - dev proxy가 루트 `.env`의 `VITE_API_BASE_URL`을 읽도록 정리.
 - Node engine 범위를 현재 toolchain 요구에 맞춰 Node 22.18+로 완화.
+- FO Storybook을 Vue 3 + Vite 기반 컴포넌트 개발/문서화 도구로 추가. 초기 범위는 Docs/Autodocs까지이며, a11y, interaction test, visual regression은 테스트 전략 확정 후 별도 결정.
 
 다음 초점:
 

@@ -11,6 +11,8 @@
   "scripts": {
     "dev:fo": "pnpm --filter @pharm/tokens build && turbo run dev --filter=@pharm/fo",
     "dev:admin": "pnpm --filter @pharm/tokens build && turbo run dev --filter=@pharm/admin",
+    "storybook:fo": "pnpm --filter @pharm/tokens build && turbo run storybook --filter=@pharm/fo",
+    "build-storybook:fo": "pnpm --filter @pharm/tokens build && turbo run build-storybook --filter=@pharm/fo",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",

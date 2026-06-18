@@ -1,0 +1,57 @@
+.tokens-story {
+  display: grid;
+  gap: var(--pharm-spacing-8);
+  min-height: 100vh;
+  padding: var(--pharm-spacing-8);
+  color: var(--pharm-color-text-primary);
+  background: var(--pharm-color-bg-canvas);
+}
+
+.tokens-story h1,
+.tokens-story h2 {
+  margin: 0;
+}
+
+.tokens-story__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--pharm-spacing-4);
+}
+
+.tokens-story__swatch,
+.tokens-story__spacing {
+  display: grid;
+  gap: 8px;
+  padding: var(--pharm-spacing-4);
+  border: 1px solid var(--pharm-color-border-default);
+  border-radius: 8px;
+  background: var(--pharm-color-bg-surface);
+}
+
+.tokens-story__color {
+  display: block;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--pharm-color-border-default);
+  border-radius: 8px;
+}
+
+.tokens-story__spacing-list {
+  display: grid;
+  gap: var(--pharm-spacing-4);
+}
+
+.tokens-story__spacing {
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.tokens-story__spacing i {
+  display: block;
+  height: 16px;
+  background: var(--pharm-color-feedback-success);
+}
+
+.tokens-story code {
+  color: var(--pharm-color-text-secondary);
+  white-space: nowrap;
+}
