@@ -21,19 +21,25 @@ docs/project-decisions.md
 - TanStack Query for Vue.
 - Sass.
 
-## 계획 구조
+## 현재 코드 구조
 
 ```txt
 apps/
-  fo/
-  admin/
+  fo/                  # Front Office SPA
+    src/app/           # provider, router
+    src/pages/home/
+    src/styles/
+  admin/               # Admin SPA
+    src/app/           # provider, router
+    src/pages/dashboard/
+    src/styles/
 
 packages/
-  config/
-  tokens/
-  api-client/
-  app-bridge/
-  utils/
+  config/              # ESLint, Prettier, TypeScript, Vite 공통 설정
+  tokens/              # token source와 generated CSS/Sass output
+  api-client/          # HTTP client, domain API, normalized error, MSW mock
+  app-bridge/          # Native bridge boundary와 transports
+  utils/               # 순수 공용 유틸리티
 ```
 
 ## 핵심 규칙
