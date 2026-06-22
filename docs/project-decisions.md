@@ -1,6 +1,6 @@
 # Pharm 프론트엔드 프로젝트 결정사항
 
-마지막 업데이트: 2026-06-18
+마지막 업데이트: 2026-06-22
 
 ## 프로젝트 맥락
 
@@ -35,6 +35,7 @@ packages/
 - Native bridge boundary는 `packages/app-bridge`에 둡니다.
 - Design token source와 generated output은 `packages/tokens`에 둡니다.
 - ESLint, Prettier, TypeScript, Vite 공통 설정은 `packages/config`에서 관리합니다.
+- 앱 내부 구조는 VSA 중심 구조에 FSD-lite 경계 규칙을 결합해 `app`, `routes`, `domains`, `shared`로 정리합니다.
 
 다음 초점:
 
@@ -71,8 +72,10 @@ FO는 하나의 adaptive PC/Mobile 앱으로 유지합니다.
 apps/fo/
   src/app/providers/
   src/app/router/
-  src/pages/home/
-  src/styles/
+  src/app/styles/
+  src/routes/
+  src/domains/home/
+  src/shared/styles/
 ```
 
 결정:
@@ -81,6 +84,7 @@ apps/fo/
 - 레이아웃, 상호작용, 정보 밀도가 의미 있게 다를 때만 presentation을 분리합니다.
 - product, cart, order, checkout 정확성은 공유 composable과 domain module에 둡니다.
 - 복원이나 공유가 중요한 list 검색 조건, page, page size, sort 상태는 route query를 사용합니다.
+- 새 FO 화면은 먼저 domain slice로 만들고 PC/Mobile presentation만 필요할 때 분리합니다.
 
 ### Admin
 
@@ -92,8 +96,10 @@ Admin은 배포, 인증, 소유권 경계가 필요해지기 전까지 하나의
 apps/admin/
   src/app/providers/
   src/app/router/
-  src/pages/dashboard/
-  src/styles/
+  src/app/styles/
+  src/routes/
+  src/domains/dashboard/
+  src/shared/styles/
 ```
 
 결정:
@@ -103,6 +109,43 @@ apps/admin/
 - component-level permission check는 생성, 수정, 승인, 취소, export, 삭제 같은 action을 제어합니다.
 - frontend permission check는 UX 개선 목적이며 backend authorization이 source of truth입니다.
 - 모든 Element Plus component를 감싸지 않고 반복되는 business pattern만 래핑합니다.
+- Admin permission, menu, guard 조합은 `app` layer에서 구성합니다.
+
+### VSA + FSD-lite 경계
+
+FO/Admin 앱은 `template-admin` 방향을 그대로 복제하지 않고, Pharm 요구에 맞춰 VSA 중심 구조와 FSD-lite 경계 규칙을 사용합니다.
+
+앱 기본 구조:
+
+```txt
+apps/{fo,admin}/src/
+  app/        # providers, router instance, guards, layouts, app styles
+  routes/     # Vue Router route records only
+  domains/    # vertical slices: api, model, ui, lib
+  shared/     # app-local shared ui, lib, styles, config
+```
+
+domain slice 표준:
+
+```txt
+domains/{name}/
+  api/       # @pharm/api-client facade adapter
+  model/     # query keys, Vue Query composables, Pinia store, view model
+  ui/        # page and domain-local components
+  lib/       # mapper, validation, pure helpers
+  index.ts   # public API
+```
+
+결정:
+
+- full FSD의 `features`, `entities`, `widgets` layer는 현재 단계에서 도입하지 않습니다.
+- 허용 import 방향은 `app -> routes -> domains -> shared`입니다.
+- `shared`는 `app`, `routes`, `domains`를 import하지 않습니다.
+- domain 간 직접 import는 금지합니다. 공통 개념은 `shared`로 승격하거나 `app/routes`에서 조합합니다.
+- domain 외부에서는 `@domains/{name}` barrel export를 통해 접근합니다.
+- `app/router`는 router 생성과 guard 등록만 담당하고, route record는 `routes/index.ts`에 둡니다.
+- style은 `app/styles`의 global style과 `shared/styles`의 reusable Sass helper로 나눕니다.
+- 상세 규칙은 `docs/app-architecture.md`를 기준으로 봅니다.
 
 ## 상태 관리 결정
 

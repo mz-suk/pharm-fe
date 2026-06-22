@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 
 import '@pharm/tokens/css'
-import './styles/main.scss'
+import './app/styles/main.scss'
 
 import App from './App.vue'
 import { installProviders } from './app/providers'

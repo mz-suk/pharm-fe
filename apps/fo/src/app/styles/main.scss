@@ -1,0 +1,8 @@
+@use './reset';
+
+body {
+  min-width: 320px;
+  color: var(--pharm-color-text-primary);
+  background: var(--pharm-color-bg-canvas);
+  font-family: var(--pharm-typography-font-family-base);
+}

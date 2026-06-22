@@ -26,13 +26,15 @@ docs/project-decisions.md
 ```txt
 apps/
   fo/                  # Front Office SPA
-    src/app/           # provider, router
-    src/pages/home/
-    src/styles/
+    src/app/           # providers, router instance, app styles
+    src/routes/
+    src/domains/home/
+    src/shared/
   admin/               # Admin SPA
-    src/app/           # provider, router
-    src/pages/dashboard/
-    src/styles/
+    src/app/           # providers, router instance, app styles
+    src/routes/
+    src/domains/dashboard/
+    src/shared/
 
 packages/
   config/              # ESLint, Prettier, TypeScript, Vite 공통 설정
@@ -47,6 +49,7 @@ packages/
 - Pinia를 서버 응답의 장기 캐시로 사용하지 않습니다.
 - GET 성격의 서버 상태와 요청 생명주기 처리는 TanStack Query를 사용합니다.
 - 생성, 수정, 삭제, 주문, 결제 API는 TanStack Query mutation을 사용합니다.
+- 새 화면과 업무 기능은 먼저 앱 내부 `domains/{name}` slice로 만듭니다.
 - 화면 컴포넌트에서 generated API 코드를 직접 호출하지 않습니다.
 - generated API client 파일은 수동으로 수정하지 않습니다.
 - `window.PharmApp`, `window.WellfyApp`, `window.FlutterWebView` 같은 네이티브 브릿지 객체는 `packages/app-bridge` 밖에서 접근하지 않습니다.
@@ -64,12 +67,43 @@ packages/
 - 개발 proxy의 `VITE_API_BASE_URL`은 루트 `.env`에서 읽습니다.
 - dev server는 기본적으로 localhost로 실행합니다. LAN/WebView 확인이 필요할 때만 명령 인자로 `--host 0.0.0.0`을 넘깁니다.
 
+## 앱 내부 구조 규칙
+
+앱 내부는 VSA 중심 구조와 FSD-lite 경계 규칙을 사용합니다.
+
+```txt
+apps/{fo,admin}/src/
+  app/        # providers, router instance, guards, layouts, app styles
+  routes/     # Vue Router route records only
+  domains/    # vertical slices: api, model, ui, lib
+  shared/     # app-local shared ui, lib, styles, config
+```
+
+domain slice는 다음 구조를 기본으로 합니다.
+
+```txt
+domains/{name}/
+  api/
+  model/
+  ui/
+  lib/
+  index.ts
+```
+
+- `app/router`는 router 생성과 guard 등록만 담당합니다.
+- route record는 `routes/index.ts`에 둡니다.
+- domain 외부 접근은 `@domains/{name}` barrel export를 통해서만 합니다.
+- 허용 import 방향은 `app -> routes -> domains -> shared`입니다.
+- domain 간 직접 import는 금지합니다. 공통 개념은 `shared`로 승격하거나 `app/routes`에서 조합합니다.
+- 화면 컴포넌트는 generated API를 직접 호출하지 않고 domain `api` facade 또는 `model` composable을 사용합니다.
+
 ## FO 규칙
 
 - FO는 adaptive PC/Mobile UI를 가진 하나의 앱으로 유지합니다.
 - route, API, state, validation, business composable은 PC/Mobile에서 공유합니다.
 - 레이아웃, 상호작용, 정보 밀도가 의미 있게 다를 때만 desktop/mobile presentation을 분리합니다.
 - product, cart, order, checkout 정확성은 공유 composable과 domain module에 둡니다.
+- FO PC/Mobile business logic은 domain `model` 또는 page composable에 둡니다.
 - 복원이나 공유가 중요한 list 검색 조건, page, page size, sort 상태는 route query를 사용합니다.
 - checkout/payment 흐름에서는 복구가 중요한 상태를 client-only hidden state로만 두지 않습니다.
 
@@ -77,6 +111,7 @@ packages/
 
 - 배포, 인증, 소유권 경계가 필요해지기 전까지 BO, PO, 영역별 admin surface는 하나의 Admin 앱으로 유지합니다.
 - route metadata, menu configuration, permission helper로 접근 제어를 구성합니다.
+- Admin permission, menu, guard는 `app` 레이어에서 조합합니다.
 - route guard는 화면 진입을 제어합니다.
 - component-level permission check는 생성, 수정, 승인, 취소, export, 삭제 같은 액션을 제어합니다.
 - 프론트엔드 권한 체크는 UX 개선 목적이며 backend authorization이 source of truth입니다.

@@ -2,7 +2,11 @@
   "extends": "../../packages/config/typescript/tsconfig.vue-app.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@domains/*": ["./src/domains/*"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.vue", ".storybook/**/*.ts", "vite.config.ts"]

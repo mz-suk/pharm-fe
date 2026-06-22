@@ -18,14 +18,18 @@
 apps/
   fo/                    # Front Office 앱
     src/app/providers/   # Pinia, TanStack Query provider
-    src/app/router/      # FO route
-    src/pages/home/      # 초기 Home page와 Storybook story
-    src/styles/          # FO global style, token story style
+    src/app/router/      # router 생성과 guard 등록
+    src/app/styles/      # FO global style
+    src/routes/          # FO route records
+    src/domains/home/    # 초기 Home domain과 Storybook story
+    src/shared/styles/   # FO shared style helper와 token story style
   admin/                 # Admin 앱
     src/app/providers/   # Pinia, TanStack Query, Element Plus provider
-    src/app/router/      # Admin route metadata와 route
-    src/pages/dashboard/ # 초기 Dashboard page
-    src/styles/          # Admin global style
+    src/app/router/      # router 생성과 guard 등록
+    src/app/styles/      # Admin global style
+    src/routes/          # Admin route metadata와 route records
+    src/domains/dashboard/ # 초기 Dashboard domain
+    src/shared/styles/   # Admin shared style helper
 
 packages/
   config/                # ESLint, Prettier, TypeScript, Vite 공통 설정
@@ -59,6 +63,8 @@ packages/
 - `@pharm/config/vite/vue-app`
 
 FO/Admin의 `vite.config.ts`는 공용 `definePharmVueAppConfig`를 호출하고 앱별 `appConfigUrl`, `port`만 선언합니다.
+
+공용 Vite helper는 `@`, `@app`, `@routes`, `@domains`, `@shared` alias를 앱 `src` 하위 경계로 연결합니다.
 
 ### `@pharm/tokens`
 
@@ -107,6 +113,54 @@ pnpm install
 4. 영향 workspace를 검증합니다.
 
 내부 패키지는 항상 `workspace:*`를 사용합니다.
+
+## 앱 내부 구조
+
+FO/Admin 앱은 VSA 중심 구조에 FSD-lite 경계 규칙만 적용합니다. 새 화면과 업무 기능은 먼저 domain slice로 만들고, route와 app bootstrap은 얇게 유지합니다.
+
+```txt
+apps/{fo,admin}/src/
+  app/        # providers, router instance, guards, layouts, app styles
+  routes/     # Vue Router route records only
+  domains/    # vertical slices: api, model, ui, lib
+  shared/     # app-local shared ui, lib, styles, config
+```
+
+domain slice 기본 형태:
+
+```txt
+domains/{name}/
+  api/
+  model/
+  ui/
+  lib/
+  index.ts
+```
+
+alias:
+
+- `@/*`: 앱 `src` 호환 alias입니다.
+- `@app/*`: app bootstrap, providers, router instance, guard, layout, global styles.
+- `@routes/*`: Vue Router route records.
+- `@domains/*`: domain slice public API.
+- `@shared/*`: app-local shared UI, helper, style.
+
+새 화면 추가 순서:
+
+1. `domains/{name}/ui`에 page component를 만듭니다.
+2. API facade가 필요하면 `domains/{name}/api`, query/composable/store가 필요하면 `domains/{name}/model`에 둡니다.
+3. mapper, validation, pure helper는 `domains/{name}/lib`에 둡니다.
+4. 외부에서 필요한 항목만 `domains/{name}/index.ts`로 export합니다.
+5. `routes/index.ts`에서 `@domains/{name}` public API를 lazy import합니다.
+
+import 경계:
+
+- 허용 방향은 `app -> routes -> domains -> shared`입니다.
+- `shared`는 `app`, `routes`, `domains`를 import하지 않습니다.
+- domain 간 직접 import는 금지합니다. 공통 개념은 `shared`로 승격하거나 `app/routes`에서 조합합니다.
+- 화면 컴포넌트는 generated API client를 직접 호출하지 않고 domain facade/composable을 사용합니다.
+
+상세 예시는 `docs/app-architecture.md`를 참고합니다.
 
 ## 자주 쓰는 명령
 

@@ -17,6 +17,10 @@ const config: StorybookConfig = {
       resolve: {
         alias: {
           '@': fileURLToPath(new URL('../src', import.meta.url)),
+          '@app': fileURLToPath(new URL('../src/app', import.meta.url)),
+          '@routes': fileURLToPath(new URL('../src/routes', import.meta.url)),
+          '@domains': fileURLToPath(new URL('../src/domains', import.meta.url)),
+          '@shared': fileURLToPath(new URL('../src/shared', import.meta.url)),
         },
       },
     }),

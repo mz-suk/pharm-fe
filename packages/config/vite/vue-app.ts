@@ -13,12 +13,17 @@ const workspaceRoot = fileURLToPath(new URL('../../..', import.meta.url))
 export function definePharmVueAppConfig(options: PharmVueAppConfigOptions) {
   return defineConfig(({ mode }) => {
     const env = loadEnv(mode, workspaceRoot, '')
+    const appSrc = new URL('./src/', options.appConfigUrl)
 
     return {
       plugins: [vue()],
       resolve: {
         alias: {
-          '@': fileURLToPath(new URL('./src', options.appConfigUrl)),
+          '@': fileURLToPath(appSrc),
+          '@app': fileURLToPath(new URL('./app', appSrc)),
+          '@routes': fileURLToPath(new URL('./routes', appSrc)),
+          '@domains': fileURLToPath(new URL('./domains', appSrc)),
+          '@shared': fileURLToPath(new URL('./shared', appSrc)),
         },
       },
       server: {
